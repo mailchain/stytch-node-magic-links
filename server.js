@@ -69,17 +69,18 @@ app.post('/login_or_create_user', async function (req, res) {
 			  </div>`
 		}
 
-		return mailchain.sendMail({
+		const { data: sentMail, error } = await mailchain.sendMail({
 			from: (await mailchain.user()).address,
 			to: [params.email],
 			subject,
 			content
 		})
-		.then(r => res.render('emailSent'))
-		.catch((e) => {
-			console.error('Failed sending message', e);
-			return res.status(500).render('loginOrSignUp');
-		})
+		if (error) {
+				console.error('Failed sending message', error);
+				return res.status(500).render('loginOrSignUp');
+		}
+		console.log('Successfully send message', sentMail)
+		return res.render('emailSent')
 	}
 
     client.magicLinks.email.loginOrCreate(params)

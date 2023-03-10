@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/stytchauth/stytch-node-magic-links#readme",
   "dependencies": {
-    "@mailchain/sdk": "^0.15.1",
+    "@mailchain/sdk": "^0.17.0",
     "axios": "^0.21.4",
     "dotenv": "^8.6.0",
     "ejs": "^3.1.6",
